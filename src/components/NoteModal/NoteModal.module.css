@@ -1,0 +1,142 @@
+@import '../../index.css';
+
+.note-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .note-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .note-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .note-modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--secondary-text);
+  }
+  .note-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--primary-text);
+  }
+  
+  .note-input,
+  .note-select,
+  .note-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.375rem;
+    background-color: #f5f5f5;
+    font-size: 1rem;
+    color: #787486;
+  }
+  
+  .note-textarea {
+    height: 8rem;
+    resize: none;
+  }
+  
+  .note-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .note-field {
+    flex: 1;
+  }
+  
+  .note-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  
+  .note-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    background-color: var(--accent-color);
+  }
+
+  .note-btn:hover {
+    background-color: var(--accent-text);
+  }
+  
+  .note-btn.cancel {
+    background-color: #e5e7eb; 
+  }
+  
+  .note-btn.cancel:hover {
+    background-color: #d1d5db;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .close-button:hover {
+    color: #000;
+  }
+  
+  .priority-bar {
+    display: flex;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+  }
+  
+  .priority-option {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db; /* gray-300 */
+    background-color: #f9fafb; /* gray-50 */
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #374151; /* gray-700 */
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  
+  .priority-option:hover {
+    background-color: #f3f4f6; /* gray-100 */
+  }
+  
+  .active {
+    background-color: #3b82f6; /* blue-500 */
+    color: white;
+    border-color: #2563eb; /* blue-600 */
+  }

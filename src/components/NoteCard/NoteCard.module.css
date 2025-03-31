@@ -1,0 +1,78 @@
+.note-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .note-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .note-priority {
+    padding: 0.25rem 0.5rem;
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 0.4rem;
+    font-weight: 600;
+  }
+  
+  .note-menu-wrapper {
+    position: relative;
+  }
+  
+  .note-ellipsis {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+  }
+  
+  .note-menu {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .note-menu button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    color: #f9fafb;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .note-menu button:hover {
+    background-color: #374151;
+    font-weight: bold;
+  }
+  
+  .note-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+  }
+  
+  .note-preview {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+  
