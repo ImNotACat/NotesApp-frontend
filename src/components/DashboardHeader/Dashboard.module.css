@@ -59,14 +59,34 @@ color: #374151;
 margin-bottom: 0;
 }
 
+.share-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .share-button {
-padding: 0.5rem 1rem;
-background-color: var(--blue-text);
-color: white;
-border: none;
-border-radius: 0.25rem;
-cursor: pointer;
-transition: background-color 0.2s ease;
+  padding: 0.5rem 1rem;
+  background-color: var(--blue-text);
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.share-message {
+  position: absolute;
+  top: 110%; 
+  left: 0;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem;
+  z-index: 10;
+  white-space: nowrap;
+  min-width: max-content
 }
 
 .share-button:hover {

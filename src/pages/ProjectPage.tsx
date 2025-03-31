@@ -87,7 +87,7 @@ const ProjectPage: React.FC<ProjectPagedProps> = ({ onEditNote, onTogglePin, onN
 
           <div className="pinned-cards">
             {pinnedNotes.length === 0 ? (
-              <p className="text-sm text-gray-500 px-4">No pinned notes yet.</p>
+              <p className="text-sm text-gray-500 px-4">No pinned notes for this project yet.</p>
             ) : (
               pinnedNotes.map((note) => (
                 <NoteCard

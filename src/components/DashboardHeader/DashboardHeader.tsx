@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './Dashboard.module.css'
 
 const priorities = ['Low', 'Medium', 'High'];
@@ -10,6 +10,8 @@ interface DashboardHeaderProps {
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onNewNoteClick }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
+  const [shareClick, setShareClick] = useState(false)
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const togglePriority = (priority: string) => {
     setSelectedPriorities((prev) =>
@@ -18,6 +20,19 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onNewNoteClick }) => 
         : [...prev, priority]
     );
   };
+
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+          setShareClick(false);
+        }
+      };
+    
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
 
   return (
     <div className={styles["dashboard-header"]}>
@@ -57,7 +72,19 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onNewNoteClick }) => 
       </div>
 
       <div className={styles["header-right"]}>
-        <button className={styles["share-button"]}>Share</button>
+        <div className={styles["share-wrapper"]}>
+          <button 
+            className={styles["share-button"]}
+            onClick={() => setShareClick((prev) => !prev)}
+          >
+            Share
+          </button>
+          {shareClick && (
+            <div ref={menuRef} className={styles["share-message"]}>
+              <span>This ain't working yet, cowboy!</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
