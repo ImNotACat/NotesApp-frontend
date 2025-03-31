@@ -12,6 +12,7 @@ import { supabase } from './lib/supabaseClient'
 import { Note } from './types/Note';
 import { Project } from './types/Project';
 import ProjectModal, { ProjectModalProps } from './components/ProjectModal/ProjectModal';
+import NotYet from './pages/NotYet';
 
 
 function App() {
@@ -250,6 +251,7 @@ function App() {
                 onNewNoteClick={openNewNoteModal} 
               />} 
             />
+            <Route path='/NotYet' element={<NotYet />}/>
         </Routes>
       </main>
       <NoteModal 

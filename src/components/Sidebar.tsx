@@ -103,19 +103,19 @@ const Sidebar: React.FC<SidebarProps> = ({
              </Link>
           </li>
           <li>
-             <Link to={'home'} className="sidebar-menu-item">
+             <Link to={'./NotYet'} className="sidebar-menu-item">
                 <Mails size={25} />
                 {!collapsed && <span>Messages</span>}
              </Link>
           </li>
           <li>
-             <Link to={'home'} className="sidebar-menu-item">
+             <Link to={'./NotYet'} className="sidebar-menu-item">
                 <ClipboardList size={25} />
                 {!collapsed && <span>Tasks</span>}
              </Link>
           </li>
           <li>
-             <Link to={'home'} className="sidebar-menu-item">
+             <Link to={'./NotYet'} className="sidebar-menu-item">
                 <Settings size={25} />
                 {!collapsed && <span>Settings</span>}
              </Link>
