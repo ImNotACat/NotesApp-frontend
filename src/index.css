@@ -392,6 +392,7 @@ h1 {
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font-size: 1rem;
+  color:  #787486;
 }
 
 .login-input:focus{
