@@ -22,20 +22,26 @@
     border-radius: 0.4rem;
     font-weight: 600;
   }
-  
-  .note-menu-wrapper {
-    position: relative;
+
+  .note-header-icons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
   }
   
-  .note-ellipsis {
+  .note-icon {
     background: none;
     border: none;
     color: #6b7280;
     cursor: pointer;
     padding: 0.25rem;
     border-radius: 0.25rem;
-  }
+  }  
   
+  .note-menu-wrapper {
+    position: relative;
+  }
+    
   .note-menu {
     position: absolute;
     top: 110%;
@@ -75,4 +81,20 @@
     color: #6b7280;
     margin-top: 0.25rem;
   }
+
+  .note-header-icons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .note-pin-button {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  
   

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -18,17 +21,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: #ff70a6;
-  --secondary-color: #70d6ff;
-  --accent-color: #FF875C;
-  --background-color: #ffd670;
+  --pink-color: #ff70a6;
+  --blue-color: #70d6ff;
+  --orange-color: #FF875C;
+  --yellow-color: #ffd670;
 
-  --primary-text: #b33964;      
-  --secondary-text: #00A1e0;    
-  --accent-text: #b3562c;      
-  --background-text: #FFBA0A; 
+  --pink-text: #b33964;      
+  --blue-text: #00A1e0;    
+  --orange-text: #b3562c;      
+  --yellow-text: #FFBA0A; 
 
   --light-grey: #f5f5f5;
+  --lime-green: #64c457;
+  --electric-purple: #C97DFF;
+  --aqua-mint: #6CFFE1;
+  --hot-orange: #FF5E3A
 }
 
 
@@ -96,12 +103,12 @@ h1 {
     flex-grow: 1;
     transition: background-color 0.2s ease;
     font-weight: 400;
-    color: var(--secondary-color);
+    color: var(--blue-color);
     text-decoration: none;
   }
 
   .sidebar-list-item:hover{
-    color: var(--secondary-text)
+    color: var(--blue-text)
   }
 
   .sidebar-list-item-wrapper {
@@ -127,7 +134,7 @@ h1 {
   }
   
   .sidebar.collapsed .sidebar-list-item-wrapper {
-    justify-content: center; /* no room reserved for ellipsis */
+    justify-content: center; 
   }
 
   .sidebar-menu-item {
@@ -139,21 +146,21 @@ h1 {
     padding: 0 1.5rem;
     gap: 1rem;
     font-weight: 500;
-    color: var(--primary-color);
+    color: var(--pink-color);
     text-decoration: none;
   }
 
   .sidebar-menu-item:hover{
-    color:var(--primary-text);
+    color:var(--pink-text);
     text-decoration: none;
   }
 
   .sidebar-menu-item svg {
-    color: var(--primary-color);
+    color: var(--pink-color);
   }
   
   .sidebar-menu-item:hover svg {
-    color: var(--primary-text);
+    color: var(--pink-text);
   }
 
   .sidebar.collapsed .sidebar-menu-item {
@@ -200,28 +207,28 @@ h1 {
   .item-options-menu button:hover {
     background-color: #F5F5F5;
     font-weight: bolder;
-    color: var(--secondary-text);
+    color: var(--blue-text);
   }
 
 
   .sidebar-icon-button {
-    color: #6b7280;                     /* text-gray-500 */
+    color: #6b7280;                    
     background-color: #ffffff;
-    padding: 1rem;                    /* like p-2 in Tailwind */
+    padding: 1rem;                    
     border: none;
-    border-radius: 0.25rem;            /* like Tailwind's rounded */
+    border-radius: 0.25rem;            
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
   }
   
   .sidebar-icon-button:hover {
-    color: #9ca3af;                    /* text-gray-400 */
-    background-color: #f3f4f6;         /* hover:bg-gray-100 */
+    color: #9ca3af;                    
+    background-color: #f3f4f6;         
   }
   
   .sidebar-icon-button:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #3b82f6;     /* optional: blue focus ring */
+    box-shadow: 0 0 0 2px #3b82f6;     
   }
   
   .sidebar-divider-wrapper {
@@ -239,12 +246,12 @@ h1 {
     min-height: 30px;
     flex-shrink: 0;
     display: flex;
-    color: var(--background-text)
+    color: var(--yellow-text)
   }
 
   .sidebar-title-icon{
     padding-left: 1rem;
-    color: var(--background-color);
+    color: var(--yellow-color);
     background-color: #ffffff;
     padding: 1rem;                    
     border: none;
@@ -256,38 +263,35 @@ h1 {
   .dashboard-body {
     display: flex;
     gap: 2rem;
-    padding: 2rem;
+    padding: 1rem 2rem;
     max-height: calc(100vh - 230px);
   }
 
   .dashboard-left,
   .dashboard-right {
     background-color: var(--light-grey);
-    border-radius: 0.5rem; /* 8px rounded corners */
+    border-radius: 0.5rem; 
     padding: 1rem;
   }
   
-  /* Left column */
   .dashboard-left {
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow: hidden; /* prevents the container from growing endlessly */
+    overflow: hidden; 
   }
   
-  /* Right column */
   .dashboard-right {
     flex: 2;
   }
-  
-  /* Pinned cards: single column */
+
   .pinned-cards {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     overflow-y: auto;
     max-height: calc(100vh - 200px);
-    padding-right: 0.75rem; /* creates space between cards and scrollbar */
+    padding-right: 0.75rem; 
   }
 
   .pinned-cards::-webkit-scrollbar {
@@ -298,15 +302,13 @@ h1 {
     background-color: rgba(100, 100, 100, 0.3);
     border-radius: 10px;
   }
-  
-  /* All items: two-column grid */
+
   .all-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-  
-  /* Shared card style */
+
   .card {
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;
@@ -335,24 +337,124 @@ h1 {
   }
   
   .section-divider-pinned{
-    border-bottom: 2px solid var(--secondary-color); 
+    border-bottom: 2px solid var(--blue-color); 
   }
 
   .section-divider-all{
-    border-bottom: 2px solid var(--primary-color); 
+    border-bottom: 2px solid var(--pink-color); 
   }
 
   .section-dot-pinned {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--secondary-color);
+    background-color: var(--blue-color);
   }
 
   .section-dot-all {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--primary-color); 
+    background-color: var(--pink-color); 
   }
+}
+
+.login-main-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.login-card {
+  background-color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.login-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--orange-color)
+}
+
+.login-input {
+  width: 100%;
+  background-color: var(--light-grey);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.login-input:focus{
+  border: 1px solid var(--pink-color);
+}
+
+.login-button {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  margin-bottom: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-email-button {
+  background-color: var(--pink-color);
+}
+
+.login-email-button:hover {
+  background-color: var(--pink-text);
+}
+
+.login-google-button {
+  background-color:var(--blue-color);
+}
+
+.login-google-button:hover {
+  background-color: var(--blue-text);
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.login-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #d1d5db;
+}
+
+.login-divider-text {
+  margin: 0 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.login-message {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.login-message.success {
+  color: #16a34a;
+}
+
+.login-message.error {
+  color: #dc2626;
 }

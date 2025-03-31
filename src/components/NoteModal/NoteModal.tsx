@@ -12,6 +12,7 @@ export interface NoteModalProps {
       content: string;
       priority: Priority;
       projectId?: string | null;
+      pinned: boolean
     }) => void;
     existingNote?: {
       id: string;
@@ -19,8 +20,9 @@ export interface NoteModalProps {
       content: string;
       priority: Priority;
       projectId?: string | null;
+      pinned: boolean
     };
-    projects: { id: string; name: string }[];
+    projects: { id: string; title: string }[];
   }
 
 const NoteModal: React.FC<NoteModalProps> = ({
@@ -34,6 +36,7 @@ const NoteModal: React.FC<NoteModalProps> = ({
   const [content, setContent] = useState('');
   const [priority, setPriority] = useState<Priority>('Medium');
   const [projectId, setProjectId] = useState<string | null>(null);
+  const [pinned, setPinned] = useState(false)
 
   useEffect(() => {
     if (existingNote) {
@@ -41,17 +44,19 @@ const NoteModal: React.FC<NoteModalProps> = ({
       setContent(existingNote.content);
       setPriority(existingNote.priority);
       setProjectId(existingNote.projectId ?? null);
+      setPinned(existingNote.pinned)
     } else {
       setTitle('');
       setContent('');
       setPriority('Medium');
       setProjectId(null);
+      setPinned(false)
     }
   }, [existingNote, isOpen]);
 
   const handleSave = () => {
     if (title.trim() === '') return;
-    onSave({ id: existingNote?.id, title, content, priority, projectId });
+    onSave({ id: existingNote?.id, title, content, priority, projectId, pinned });
     onClose();
   };
 
@@ -119,7 +124,7 @@ const NoteModal: React.FC<NoteModalProps> = ({
                 <option value="">None</option>
                 {projects.map((project) => (
                     <option key={project.id} value={project.id}>
-                    {project.name}
+                    {project.title}
                     </option>
                 ))}
                 </select>

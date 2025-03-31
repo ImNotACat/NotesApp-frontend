@@ -2,36 +2,47 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { Folder, House, Mails, ClipboardList, Settings, Ellipsis, SquarePlus } from "lucide-react"; 
 import ArrowBackIosNewRounded from '@mui/icons-material/ArrowBackIosNewRounded';
+import { Project } from '../types/Project';
 
-const projects = [
+/*const projects = [
   { id: "1", name: "Project Alpha" },
   { id: "2", name: "Project Beta" },
   { id: "3", name: "Project Gamma" },
-];
+];*/
 
 interface SidebarProps {
-  onNewNoteClick: () => void;
+  projects: Project[];
+  onNewProjectClick: () => void;
+  onRenameProject: (project: Project) => void;
+  onDeleteProject: (projectId: string) => void;
+
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onNewNoteClick }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  projects,
+  onNewProjectClick,
+  onRenameProject,
+  onDeleteProject,
+}) => {
+
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  
-
   const handleRename = (id: string) => {
-    console.log("Rename:", id);
-  };
-  
+    const project = projects.find((p) => p.id === id)
+    if (project) {
+      onRenameProject(project)
+    }
+  }
   const handleShare = (id: string) => {
     console.log("Share:", id);
   };
   
   const handleDelete = (id: string) => {
-    console.log("Delete:", id);
-  };
+    onDeleteProject(id)
+  }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -119,12 +130,12 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewNoteClick }) => {
       {!collapsed ? (
         <div className="sidebar-title flex items-center justify-between">
           <div>MY PROJECTS</div>
-            <button className="sidebar-title-icon" onClick={onNewNoteClick}>
+            <button className="sidebar-title-icon" onClick={onNewProjectClick}>
             <SquarePlus size={20} />
           </button>
         </div>) : (
         <div className="sidebar-title flex items-center justify-between">
-            <button className="sidebar-title-icon" onClick={onNewNoteClick}>
+            <button className="sidebar-title-icon" onClick={onNewProjectClick}>
             <SquarePlus size={20} />
           </button>
         </div>
@@ -142,9 +153,15 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewNoteClick }) => {
                 <Link
                   to={`/project/${project.id}`}
                   className={`sidebar-list-item ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
+                  style={{
+                    color: project.project_colour || 'inherit',
+                  }}
                 >
-                  <Folder size={18} />
-                  {!collapsed && <span>{project.name}</span>}
+                  <Folder
+                    size={18}
+                    style={{ color: project.project_colour || 'inherit' }}
+                  />
+                  {!collapsed && <span>{project.title}</span>}
                 </Link>
 
                 {!collapsed && (

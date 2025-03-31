@@ -3,7 +3,11 @@ import styles from './Dashboard.module.css'
 
 const priorities = ['Low', 'Medium', 'High'];
 
-const DashboardHeader = () => {
+interface DashboardHeaderProps {
+  onNewNoteClick: () => void
+}
+
+const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onNewNoteClick }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
 
@@ -42,6 +46,14 @@ const DashboardHeader = () => {
             </div>
           )}
         </div>
+        <button
+          className={styles["new-button"]}
+          onClick={onNewNoteClick}
+          title="New Note"
+        >
+          Add new note
+          
+        </button>
       </div>
 
       <div className={styles["header-right"]}>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MoreVertical } from 'lucide-react';
+import { MoreVertical, Pin, PinOff } from 'lucide-react';
 import styles from './NoteCard.module.css'
 
 interface NoteCardProps {
@@ -8,13 +8,15 @@ interface NoteCardProps {
   body: string;
   priority: 'High' | 'Medium' | 'Low';
   projectId?: string | null;
+  pinned: boolean;
+  onTogglePin: (id: string) => void;
   onClick?: (id: string) => void;
   onRename: (id: string) => void;
   onShare: (id: string) => void;
   onDelete: (id: string) => void;
 }
 
-const NoteCard: React.FC<NoteCardProps> = ({ id, title, body, priority, onClick, onRename, onShare, onDelete }) => {
+const NoteCard: React.FC<NoteCardProps> = ({ id, title, body, priority, pinned, onTogglePin, onClick, onRename, onShare, onDelete }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -41,6 +43,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ id, title, body, priority, onClick,
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  
 
   return (
     <div
@@ -57,18 +60,31 @@ const NoteCard: React.FC<NoteCardProps> = ({ id, title, body, priority, onClick,
           >
             {priority}
           </span>
-          <div className={styles["note-menu-wrapper"]} ref={menuRef}>
-            <button onClick={() => setMenuOpen(!menuOpen)} className={styles["note-ellipsis"]}>
-              <MoreVertical size={18} />
+          <div className={styles["note-header-icons"]}>
+            <button
+              className={styles["note-icon"]}
+              onClick={(e) => {
+                e.stopPropagation()
+                onTogglePin(id)
+              }}
+              aria-label="Toggle pinned"
+            >
+              {pinned ? <PinOff size={18} /> : <Pin size={18} />}
             </button>
-            {menuOpen && (
-              <div className={styles['note-menu']}>
-                <button onClick={() => onRename(id)}>Rename</button>
-                <button onClick={() => onShare(id)}>Share</button>
-                <button onClick={() => onDelete(id)}>Delete</button>
-              </div>
-            )}
+            <div className={styles["note-menu-wrapper"]} ref={menuRef}>
+              <button onClick={() => setMenuOpen(!menuOpen)} className={styles["note-icon"]}>
+                <MoreVertical size={18} />
+              </button>
+              {menuOpen && (
+                <div className={styles['note-menu']}>
+                  <button onClick={() => onRename(id)}>Rename</button>
+                  <button onClick={() => onShare(id)}>Share</button>
+                  <button onClick={() => onDelete(id)}>Delete</button>
+                </div>
+              )}
+            </div>            
           </div>
+
         </div>
 
         <h3 className={styles['note-title']}>{title}</h3>
