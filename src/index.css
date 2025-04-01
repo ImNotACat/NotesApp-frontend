@@ -282,7 +282,10 @@ h1 {
   }
   
   .dashboard-right {
+    display: flex;
+    flex-direction: column;
     flex: 2;
+    overflow: hidden; 
   }
 
   .pinned-cards {
@@ -305,8 +308,10 @@ h1 {
 
   .all-cards {
     display: grid;
+    overflow-y: auto;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding-right: 0.75rem; 
   }
 
   .card {

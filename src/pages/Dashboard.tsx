@@ -13,7 +13,7 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ notes, onEditNote, onTogglePin, onNewNoteClick }) => {
   const pinnedNotes = notes.filter((note) => note.pinned)
-  //const unpinnedNotes = notes.filter((note) => !note.pinned)
+  const unpinnedNotes = notes.filter((note) => !note.pinned)
 
   const handleCardClick = (id: string) => {
     const note = notes.find((n) => n.id === id)
@@ -69,10 +69,10 @@ const Dashboard: React.FC<DashboardProps> = ({ notes, onEditNote, onTogglePin, o
           </div>
 
           <div className="all-cards">
-            {notes.length === 0 ? (
+            {unpinnedNotes.length === 0 ? (
               <p className="text-sm text-gray-500 px-4">No notes yet.</p>
             ) : (
-              notes.map((note) => (
+              unpinnedNotes.map((note) => (
                 <NoteCard
                   key={note.id}
                   id={note.id}
