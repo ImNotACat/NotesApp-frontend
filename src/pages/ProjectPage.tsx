@@ -11,7 +11,7 @@ import DashboardHeader from "../components/DashboardHeader/DashboardHeader";
 interface ProjectPagedProps {
   onEditNote: (note: Note) => void
   onTogglePin: (id: string, currentPinned: boolean) => void
-  onNewNoteClick: () => void
+  onNewNoteClick:  (projectId: string) => void;
 }
 
 const ProjectPage: React.FC<ProjectPagedProps> = ({ onEditNote, onTogglePin, onNewNoteClick }) => {
@@ -62,7 +62,7 @@ const ProjectPage: React.FC<ProjectPagedProps> = ({ onEditNote, onTogglePin, onN
   }
 
   if (loading) return <div className="p-4">Loading...</div>
-  if (!project) return <div className="p-4">Project not found</div>
+  if (!project || !projectId) return <div className="p-4">Project not found</div>
 
   return (
     
@@ -74,7 +74,7 @@ const ProjectPage: React.FC<ProjectPagedProps> = ({ onEditNote, onTogglePin, onN
         </div>         
       </div>
      
-      <DashboardHeader onNewNoteClick={onNewNoteClick} />
+      <DashboardHeader onNewNoteClick={() => onNewNoteClick(projectId)} />
       <div className="dashboard-body">
         <div className="dashboard-left">
           <div className="section-header-wrapper">
