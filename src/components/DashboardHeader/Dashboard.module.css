@@ -22,12 +22,15 @@
 
 .filter-button {
   padding: 0.5rem 1rem;
-  background-color: #f3f4f6;
-  border: none;
+  background-color: #ffffff;
+  color: #787486;
+  border: 1px solid #787486;
   border-radius: 0.25rem;
-  color: #374151;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .filter-button:hover {
@@ -39,7 +42,8 @@
   top: 110%;
   left: 0;
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  color: #787486;
+  border: 1px solid #787486;
   border-radius: 0.25rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   padding: 0.5rem;
@@ -66,13 +70,16 @@
 
 .share-button {
   padding: 0.5rem 1rem;
-  background-color: var(--blue-text);
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: #787486;
+  border: 1px solid #787486;
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .share-message {
@@ -90,20 +97,23 @@
 }
 
 .share-button:hover {
-  background-color: #4f46e5;
+  background-color: #e5e7eb;
   }
 
 .new-button {
   padding: 0.5rem 1rem;
-  background-color: var(--pink-color);
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: #787486;
+  border: 1px solid #787486;
   border-radius: 0.25rem;
-  cursor: pointer;
+  cursor: pointer;  
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   transition: background-color 0.2s ease;
   margin: 1rem;
   }
   
 .new-button:hover {
-  background-color: var(--pink-text);
+  background-color: #e5e7eb;
   }

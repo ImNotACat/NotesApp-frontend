@@ -100,9 +100,12 @@ const NoteModal: React.FC<NoteModalProps> = ({
                 <button
                     key={level}
                     type="button"
-                    className={`${styles['priority-option']} ${
-                    priority === level ? styles['active'] : ''
-                    }`}
+                    className={`${styles['priority-option']} 
+                      ${(priority === level && level === 'High') ? styles['priority-high'] : ''}
+                      ${(priority === level && level === 'Medium') ? styles['priority-med'] : ''}
+                      ${(priority === level && level === 'Low') ? styles['priority-low'] : ''}
+                      `} 
+                      
                     onClick={() => setPriority(level)}
                 >
                     {level}

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
-import { Folder, House, Mails, ClipboardList, Settings, Ellipsis, SquarePlus } from "lucide-react"; 
+import { Boxes, Folder, House, Mails, ClipboardList, Settings, Ellipsis, SquarePlus } from "lucide-react"; 
 import ArrowBackIosNewRounded from '@mui/icons-material/ArrowBackIosNewRounded';
 import { Project } from '../types/Project';
 
@@ -63,7 +63,8 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       {!collapsed ? (
         <div className="sidebar-top">
-          <h2 className="text-lg font-bold">Projects</h2>
+          
+          <h2 className="text-lg font-bold"> <Boxes size={30} style={{ color: "#5030E5", marginRight: "0.5rem" }}/>Projects</h2>
           <button
             onClick={() => setCollapsed((prev) => !prev)}
             className="sidebar-icon-button"
@@ -153,13 +154,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                 <Link
                   to={`/project/${project.id}`}
                   className={`sidebar-list-item ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
-                  style={{
-                    color: project.project_colour || 'inherit',
-                  }}
                 >
                   <Folder
                     size={18}
-                    style={{ color: project.project_colour || 'inherit' }}
+                    className={'bg-gray-700'}
                   />
                   {!collapsed && <span>{project.title}</span>}
                 </Link>

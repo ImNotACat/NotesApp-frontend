@@ -72,14 +72,23 @@ const NoteCard: React.FC<NoteCardProps> = ({ id, title, body, priority, pinned, 
               {pinned ? <PinOff size={18} /> : <Pin size={18} />}
             </button>
             <div className={styles["note-menu-wrapper"]} ref={menuRef}>
-              <button onClick={() => setMenuOpen(!menuOpen)} className={styles["note-icon"]}>
-                <MoreVertical size={18} />
-              </button>
+            <button
+              onClick={(e: React.MouseEvent) => {
+                e.stopPropagation();
+                setMenuOpen(!menuOpen);
+              }}
+              className={styles["note-icon"]}
+            >
+              <MoreVertical size={18} />
+            </button>
               {menuOpen && (
                 <div className={styles['note-menu']}>
                   <button onClick={() => onRename(id)}>Rename</button>
                   <button onClick={() => onShare(id)}>Share</button>
-                  <button onClick={() => onDelete(id)}>Delete</button>
+                  <button  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    onDelete(id);
+                  }}>Delete</button>
                 </div>
               )}
             </div>            

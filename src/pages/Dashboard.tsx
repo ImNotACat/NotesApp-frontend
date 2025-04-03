@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/SiteHeader/SiteHeader';
 import DashboardHeader from '../components/DashboardHeader/DashboardHeader';
 import NoteCard from '../components/NoteCard/NoteCard';
 import { Note, Priority } from '../types/Note';
+import { supabase } from '../lib/supabaseClient';
 
 interface DashboardProps {
   notes: Note[]
@@ -12,14 +13,44 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ notes, onEditNote, onTogglePin, onNewNoteClick }) => {
-  const pinnedNotes = notes.filter((note) => note.pinned)
-  const unpinnedNotes = notes.filter((note) => !note.pinned)
+  const [currNotes, setCurrNotes] = useState<Note[]>(notes ?? []);
+  const [pinnedNotes, setPinnedNotes] = useState<Note[]>([])
+  const [unpinnedNotes, setUnpinnedNotes] = useState<Note[]>([])
+
+  useEffect(() => {
+    if (notes) {
+      setCurrNotes(notes);
+    }
+  }, [notes]);
+
+  useEffect(() => {
+    setPinnedNotes(currNotes.filter((note) => note.pinned));
+    setUnpinnedNotes(currNotes.filter((note) => !note.pinned));
+  }, [currNotes]);
+  
+  
 
   const handleCardClick = (id: string) => {
     const note = notes.find((n) => n.id === id)
     if (note) {
       onEditNote(note)
     }
+  }
+
+  const handleDeleteNote = async (id: string) =>{
+    const { error } = await supabase
+    .from('notes')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error deleting note:', error.message);
+  } else {
+    console.log(`Note ${id} deleted successfully`);
+
+    // Optionally: update local state so UI reflects deletion
+    setCurrNotes((prev) => prev.filter((note) => note.id !== id));
+  }
   }
 
   return (
@@ -52,7 +83,7 @@ const Dashboard: React.FC<DashboardProps> = ({ notes, onEditNote, onTogglePin, o
                   onClick={handleCardClick}
                   onRename={(id) => console.log('rename', id)}
                   onShare={(id) => console.log('share', id)}
-                  onDelete={(id) => console.log('delete', id)}
+                  onDelete={(id) => handleDeleteNote(id)}
                 />
               ))
             )}
@@ -84,12 +115,12 @@ const Dashboard: React.FC<DashboardProps> = ({ notes, onEditNote, onTogglePin, o
                   onClick={handleCardClick}
                   onRename={(id) => console.log('rename', id)}
                   onShare={(id) => console.log('share', id)}
-                  onDelete={(id) => console.log('delete', id)}
+                  onDelete={(id) => handleDeleteNote(id)}
                 />
               ))
             )}
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   )

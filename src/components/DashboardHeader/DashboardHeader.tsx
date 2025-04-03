@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './Dashboard.module.css'
+import { Users, Funnel, Plus } from 'lucide-react';
 
 const priorities = ['Low', 'Medium', 'High'];
 
@@ -43,6 +44,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onNewNoteClick }) => 
             className={styles["filter-button"]}
             onClick={() => setDropdownOpen((prev) => !prev)}
           >
+            <Funnel size={18} />
             Filter
           </button>
 
@@ -66,6 +68,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onNewNoteClick }) => 
           onClick={onNewNoteClick}
           title="New Note"
         >
+          <Plus size={18} />
           Add new note
           
         </button>
@@ -77,6 +80,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onNewNoteClick }) => 
             className={styles["share-button"]}
             onClick={() => setShareClick((prev) => !prev)}
           >
+            <Users size={18} />
             Share
           </button>
           {shareClick && (
