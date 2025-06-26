@@ -92,7 +92,7 @@ const Header: React.FC = () => {
                 <img
                   src={profile.avatar_url}
                   alt="User avatar"
-                  className="w-6 h-6 rounded-full object-cover"
+                  style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover' }}
                 />
               ) : (
                 <User size={18} className="text-white" />
