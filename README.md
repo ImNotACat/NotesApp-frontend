@@ -6,8 +6,8 @@ This is a personal project focused on usability, clean design, and scalable arch
 
 ---
 
-## Features
-### Implemented
+## ✨ Features
+### ✅ Implemented
 - Supabase auth (session-based login)
 - Pin/unpin notes
 - Assign notes to custom projects
@@ -15,7 +15,7 @@ This is a personal project focused on usability, clean design, and scalable arch
 - Persist data using Supabase Postgres
 - Responsive UI with TailwindCSS and custom CSS modules
 
-### Upcoming
+### 🛠️ Upcoming
 - Search and filter notes by priority/project
 - Share notes with other users
 - Project descriptions and extended metadata
@@ -23,7 +23,7 @@ This is a personal project focused on usability, clean design, and scalable arch
 
 ---
 
-## Tech Stack
+## ✨ Tech Stack
 
 - **Frontend**: React + Vite
 - **Styling**: TailwindCSS, CSS Modules
